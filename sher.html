@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💼 7OOP Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background: #0d1117;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: #161b22;
+            padding: 30px 20px;
+            overflow-y: auto;
+            border-right: 1px solid #30363d;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #58a6ff;
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #c9d1d9;
+            margin-bottom: 5px;
+        }
+
+        .profile-subtitle {
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            margin-bottom: 10px;
+        }
+
+        .nav-links a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #79c0ff;
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 270px;
+            padding: 40px 20px;
+            color: #c9d1d9;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%);
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #c9d1d9;
+            border-bottom: 2px solid #21262d;
+            padding-bottom: 10px;
+        }
+
+        /* About Section */
+        .about-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-name {
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .about-text {
+            line-height: 1.8;
+            color: #8b949e;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .skill-card h3 {
+            color: #58a6ff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            color: #8b949e;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li:before {
+            content: "▹ ";
+            color: #58a6ff;
+            font-weight: bold;
+        }
+
+        .language-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .language-icons img {
+            width: 48px;
+            height: 48px;
+            transition: transform 0.3s;
+        }
+
+        .language-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Projects Section */
+        .project-category {
+            margin-bottom: 50px;
+        }
+
+        .project-category h3 {
+            color: #58a6ff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .project-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .project-item {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px 20px;
+            transition: all 0.3s;
+        }
+
+        .project-item:hover {
+            border-color: #58a6ff;
+            background: #1c2128;
+        }
+
+        .project-item a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fun Facts Section */
+        .fun-facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .fun-fact-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .fun-fact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .fun-fact-title {
+            color: #58a6ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .fun-fact-text {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 50%;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: #58a6ff;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            color: #8b949e;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #30363d;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="profile-section">
+            <img src="https://dbuccat24-0032.github.io/7OOP/Images/Profile.jpg" alt="Profile" class="profile-img">
+            <h1 class="profile-name">💼 7OOP Portfolio</h1>
+            <p class="profile-subtitle">🗂️ 1st Semester 7OOP Projects</p>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">📖 About Me</a></li>
+                <li><a href="#skills">💻 Skills</a></li>
+                <li><a href="#projects">🗂️ Projects</a></li>
+                <li><a href="#funfacts">🎉 Fun Facts</a></li>
+                <li><a href="#contact">📫 Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">💼 7OOP Portfolio</h1>
+            <p class="hero-subtitle">Daniel Robert T. Buccat</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">📖 About Me</h2>
+            <div class="about-card">
+                <div class="about-grid">
+                    <div class="about-name">Daniel Robert Buccat</div>
+                    <div class="about-text">
+                        Hi there! I'm Daniel Robert T. Buccat 👋 <br>
+                        🎓 2nd Year Computer Science Student at City College of Angeles (CCA)<br><br>
+                        I'm a 2nd-year Computer Science student passionate about creating meaningful software solutions. 
+                        I love blending creativity and technology to bring ideas to life — whether it's through coding, music, or content creation. 
+                        Outside of development, I serve at my church by playing guitar and create Minecraft content on YouTube where I share creativity and positivity.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">💻 Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🎯 Interest</h3>
+                    <ul class="skill-list">
+                        <li>Web Development</li>
+                        <li>Game Development</li>
+                        <li>Mobile App Development</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>💻 Languages</h3>
+                    <div class="language-icons">
+                        <img src="https://skillicons.dev/icons?i=python" alt="Python">
+                        <img src="https://skillicons.dev/icons?i=java" alt="Java">
+                        <img src="https://skillicons.dev/icons?i=html" alt="HTML">
+                        <img src="https://skillicons.dev/icons?i=css" alt="CSS">
+                        <img src="https://skillicons.dev/icons?i=js" alt="JavaScript">
+                        <img src="https://skillicons.dev/icons?i=c" alt="C">
+                        <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL">
+                    </div>
+                    <ul class="skill-list" style="margin-top: 15px;">
+                        <li>Python • Java • HTML • CSS</li>
+                        <li>JavaScript • C • SQL</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">🗂️ Projects</h2>
+            
+            <div class="project-category">
+                <h3>📘 Midterm Projects</h3>
+                <div class="project-list">
+                    <div class="project-item">
+                        🔹 <a href="#">Paired Task 1</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 1: Getting Started with Python</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 2: Loop Construct</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 3: Using List Collections</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 4: Using Dictionary Collections</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 5: Functions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <h3>🎓 Final Projects</h3>
+                <div class="project-list">
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 1: Encapsulation</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 2: Inheritance</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 3: Polymorphism</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 4: Designing Tkinter GUI using OOP</a>
+                    </div>
+                    <div class="project-item">
+                        🔹 <a href="#">Lab Task 5: Grading Program using Tkinter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun Facts Section -->
+        <section id="funfacts">
+            <h2 class="section-title">🎉 Fun Facts About Me</h2>
+            <div class="fun-facts-grid">
+                <div class="fun-fact-card">
+                    <div class="fun-fact-icon">🎮</div>
+                    <div class="fun-fact-title">Gamer at Heart</div>
+                    <div class="fun-fact-text">I love exploring immersive game worlds and playing with friends during my free time.</div>
+                </div>
+                <div class="fun-fact-card">
+                    <div class="fun-fact-icon">🎸</div>
+                    <div class="fun-fact-title">Music Enthusiast</div>
+                    <div class="fun-fact-text">I play the guitar and use music as a way to express creativity and worship.</div>
+                </div>
+                <div class="fun-fact-card">
+                    <div class="fun-fact-icon">🎥</div>
+                    <div class="fun-fact-title">Content Creator</div>
+                    <div class="fun-fact-text">I create YouTube videos — mostly Minecraft and tech-related content!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">📫 Contact Me</h2>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com" class="contact-link" title="Email">📧</a>
+                <a href="#" class="contact-link" title="Facebook">📘</a>
+                <a href="#" class="contact-link" title="Instagram">📷</a>
+                <a href="#" class="contact-link" title="YouTube">▶️</a>
+                <a href="#" class="contact-link" title="TikTok">🎵</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-card, .skill-card, .project-category, .fun-fact-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
